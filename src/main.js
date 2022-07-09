@@ -13,16 +13,28 @@ const axios = require("axios");
         const configSettings = config.Rules._attributes;
         const configRules = config.Rules;
 
-        const res = await axios.get(
-            `https://yfapi.net/v11/finance/quoteSummary/AAPL?modules=summaryDetail`,
-            {
-                headers: {
-                    "x-api-key": configSettings.yahooFinanceApiKey,
-                },
+        for (const key in configRules) {
+            const attributes = configRules[key]._attributes;
+            if (attributes) {
+                switch (key) {
+                    case "PriceMinimum":
+                        console.log(require("./rules/priceMinimum")(attributes))
+                }
             }
-        );
+        }
 
-        console.log(res.data.quoteSummary.result[0].summaryDetail.previousClose.raw);
+        // await Promise.all()
+
+        // const res = await axios.get(
+        //     `https://yfapi.net/v11/finance/quoteSummary/AAPL?modules=summaryDetail`,
+        //     {
+        //         headers: {
+        //             "x-api-key": configSettings.yahooFinanceApiKey,
+        //         },
+        //     }
+        // );
+        //
+        // console.log(res.data.quoteSummary.result[0].summaryDetail.previousClose.raw);
     } catch(err) {
         console.error(err);
     }

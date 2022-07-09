@@ -1,1 +1,3 @@
-<Rules yahooFinanceApiKey="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"></Rules>
+<Rules yahooFinanceApiKey="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
+    <PriceMinimum symbol="XXXX" price="200" every="1 week" />
+</Rules>
