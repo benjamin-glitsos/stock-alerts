@@ -1,1 +1,5 @@
 # Stock alerts
+
+## Requirements
+
+* Linux
