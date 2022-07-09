@@ -18,6 +18,7 @@ import handleError from "./utilities/handleError";
     // TODO: instead of cron, put everything on a one day loop. And have a max occurrence field - daily, weekly, monthly
     // TODO: handleNotify - sending emails using an API
     // TODO: handleError should log to /var/log
+    // TODO: make the yahoo endpoint and return object into a utility (automatically adds date and event id)
     await Promise.all(Object.entries(configRules).map(([rule, value]) => {
         const parameters = value._attributes;
 
