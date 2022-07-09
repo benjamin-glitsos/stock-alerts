@@ -1,3 +1,3 @@
-module.exports = (rule, message) => {
-    console.error(`Rule '${rule}: ${message}'`);
+module.exports = (ruleId, message) => {
+    console.error(`${ruleId}: ${message}`);
 }

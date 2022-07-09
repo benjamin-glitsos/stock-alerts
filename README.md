@@ -10,7 +10,7 @@ Create a `.stock-alerts.xml` file in your home directory.
 
 ```xml
 <Rules yahooFinanceApiKey="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
-    <PriceMinimum symbol="AAPL" price="500" />
-    <PriceMaximum symbol="GOOG" price="1000" />
+    <PriceMinimum id="PriceMinimumAAPL500" symbol="AAPL" price="500" />
+    <PriceMaximum id="PriceMaximumGOOG1000" symbol="GOOG" price="1000" />
 </Rules>
 ```

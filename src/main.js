@@ -19,19 +19,14 @@ const handleError = require("./utilities/handleError");
     // TODO: handleError should log to /tmp
     await Promise.all(Object.entries(configRules).map(([rule, value]) => {
         const parameters = value._attributes;
-        const context = {
-            settings: configSettings,
-            rule,
-            parameters
-        };
 
         if (parameters) {
             switch (rule) {
                 case "PriceMinimum":
-                    handleRule("priceMinimum", context);
+                    handleRule("priceMinimum", configSettings, parameters);
                     break;
                 default:
-                    handleError(rule, "Rule is not recognised.")
+                    handleError(parameters.id, `Rule type '${rule}' is not recognised.`)
             }
         }
     }));
