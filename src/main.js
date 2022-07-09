@@ -14,9 +14,7 @@ const handleError = require("./utilities/handleError");
     const configSettings = config.Rules._attributes;
     const configRules = config.Rules;
 
-    // TODO: add event id UUID to each event triggered by stock-tracker
     // TODO: add date field to each return object as well
-    // TODO: add date and event id to return objects when triggered=false as well
     // TODO: handleNotify - sending emails using an API
     // TODO: cron (note - load xml on each run; this allows it to 'hot load' the config)
     // TODO: handleError should log to /tmp

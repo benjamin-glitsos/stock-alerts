@@ -1,5 +1,6 @@
 const handleError = require("./handleError");
 const Mustache = require("mustache");
+const { v4: uuidv4 } = require('uuid');
 
 module.exports = async (ruleTypeFilename, settings, parameters) => {
     try {
@@ -7,7 +8,8 @@ module.exports = async (ruleTypeFilename, settings, parameters) => {
         if (result.triggered) {
             const messageTemplated = parameters.message ? Mustache.render(parameters.message, parameters) : result.message;
             console.log({ 
-                id: result.id,
+                transactionId: uuidv4(),
+                ruleId: result.id,
                 symbol: result.symbol,
                 message: messageTemplated
             });
