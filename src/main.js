@@ -16,7 +16,7 @@ import handleError from "./utilities/handleError";
     // TODO use import syntax - put "type": "module" in package.json
     // TODO: cron (note - load xml on each run; this allows it to 'hot load' the config)
     // TODO: instead of cron, put everything on a one day loop. And have a max occurrence field - daily, weekly, monthly
-    // TODO: handleNotify - sending emails using an API
+    // TODO: handleNotify - sending emails using SendGrid API
     // TODO: handleError should log to /var/log
     // TODO: make the yahoo endpoint and return object into a utility (automatically adds date and event id)
     await Promise.all(Object.entries(configRules).map(([rule, value]) => {
