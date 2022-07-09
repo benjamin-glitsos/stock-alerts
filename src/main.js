@@ -14,7 +14,6 @@ const handleError = require("./utilities/handleError");
     const configSettings = config.Rules._attributes;
     const configRules = config.Rules;
 
-    // TODO: add date field to each return object as well
     // TODO: handleNotify - sending emails using an API
     // TODO: cron (note - load xml on each run; this allows it to 'hot load' the config)
     // TODO: handleError should log to /tmp
