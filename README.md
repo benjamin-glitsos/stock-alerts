@@ -18,8 +18,7 @@ Create a `.stock-alerts.xml` file in your home directory.
 ## Configuration
 
 * Rules
-  * (Attributes)
-    * yahooFinanceApiKey
+  * yahooFinanceApiKey
   * PriceMinimum
     * id
     * symbol
