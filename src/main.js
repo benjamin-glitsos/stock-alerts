@@ -11,11 +11,11 @@ fs.readFile(`${process.env.HOME}/.stock-alerts.xml`, "utf8", (err, data) => {
   const config = parseXml.xml2js(data, { compact: true });
   const globalConfig = config.Rules._attributes;
   axios
-    .get("https://yfapi.net/v11/finance/quoteSummary/AAPL?modules=defaultKeyStatistics", {
+    .get(`https://yfapi.net/v11/finance/quoteSummary/AAPL?modules=summaryDetail`, {
       headers: {
         "x-api-key": globalConfig.yahooFinanceApiKey,
       },
     })
-    .then((res) => console.log(JSON.stringify(res.data)))
+    .then((res) => console.log(res.data.quoteSummary.result[0].summaryDetail.previousClose.raw))
     .catch((error) => console.error(error));
 });
