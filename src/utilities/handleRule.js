@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 module.exports = async (ruleTypeFilename, settings, parameters) => {
     try {
         const result = await require(`../ruleTypes/${ruleTypeFilename}`)(settings, parameters);
-        if (result.triggered) {
+        if (result) {
             const transactionId = uuidv4();
             const dateTime = (new Date()).toISOString();
             const id = result.id;

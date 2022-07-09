@@ -13,8 +13,6 @@ module.exports = async (settings, { id, symbol, price }) => {
     const previousClose = quote.data.quoteSummary.result[0].summaryDetail.previousClose.raw;
 
     if (previousClose < price) {
-        return { id, triggered: true, symbol, message: `Price ${previousClose} is below minimum of ${price}` }
-    } else {
-        return { id, triggered: false }
+        return { id, symbol, message: `Price ${previousClose} is below minimum of ${price}` }
     }
 };
