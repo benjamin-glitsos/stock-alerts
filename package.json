@@ -19,6 +19,7 @@
     "homepage": "https://github.com/benjamin-glitsos/stock-alerts#readme",
     "dependencies": {
         "axios": "^0.27.2",
+        "mustache": "^4.2.0",
         "xml-js": "^1.6.11"
     }
 }
