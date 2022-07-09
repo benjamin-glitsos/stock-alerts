@@ -11,7 +11,8 @@ Create a `.stock-alerts.xml` file in your home directory.
 ```xml
 <Rules
     yahooFinanceApiKey="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-    sendGridApiKey="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX">
+    sendGridApiKey="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    sendGridSubject="Stock alert {{id}} for {{symbol}}">
     <PriceMinimum id="PriceMinimumAAPL500" symbol="AAPL" price="500" />
     <PriceMaximum id="PriceMaximumGOOG1000" symbol="GOOG" price="1000" message="Google price has exceeded ${{price}}." />
 </Rules>
@@ -22,6 +23,7 @@ Create a `.stock-alerts.xml` file in your home directory.
 * Rules
   * yahooFinanceApiKey
   * sendGridApiKey
+  * sendGridSubject
   * PriceMinimum
     * id
     * symbol
