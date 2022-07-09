@@ -1,8 +1,8 @@
-const handleError = require("./handleError");
-const Mustache = require("mustache");
-const { v4: uuidv4 } = require('uuid');
+import handleError from "./handleError";
+import Mustache from "mustache";
+import { v4 as uuidv4 } from 'uuid';
 
-module.exports = async (ruleTypeFilename, settings, parameters) => {
+export default async (ruleTypeFilename, settings, parameters) => {
     try {
         const result = await require(`../ruleTypes/${ruleTypeFilename}`)(settings, parameters);
         if (result) {

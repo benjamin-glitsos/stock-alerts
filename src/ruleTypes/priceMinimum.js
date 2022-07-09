@@ -1,6 +1,6 @@
-const axios = require("axios");
+import axios from "axios";
 
-module.exports = async (settings, { id, symbol, price }) => {
+export default async (settings, { id, symbol, price }) => {
     const quote = await axios.get(
         `https://yfapi.net/v11/finance/quoteSummary/${symbol}?modules=summaryDetail`,
         {

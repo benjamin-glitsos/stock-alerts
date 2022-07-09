@@ -1,8 +1,7 @@
-const fs = require("fs");
-const fsPromises = fs.promises;
-const parseXml = require("xml-js");
-const handleRule = require("./utilities/handleRule");
-const handleError = require("./utilities/handleError");
+import { promises as fsPromises } from "fs";
+import parseXml from "xml-js";
+import handleRule from "./utilities/handleRule";
+import handleError from "./utilities/handleError";
 
 (async () => {
     const configFilepath = `${process.env.HOME}/.stock-alerts.xml`;
@@ -14,9 +13,11 @@ const handleError = require("./utilities/handleError");
     const configSettings = config.Rules._attributes;
     const configRules = config.Rules;
 
-    // TODO: handleNotify - sending emails using an API
+    // TODO use import syntax - put "type": "module" in package.json
     // TODO: cron (note - load xml on each run; this allows it to 'hot load' the config)
-    // TODO: handleError should log to /tmp
+    // TODO: instead of cron, put everything on a one day loop. And have a max occurrence field - daily, weekly, monthly
+    // TODO: handleNotify - sending emails using an API
+    // TODO: handleError should log to /var/log
     await Promise.all(Object.entries(configRules).map(([rule, value]) => {
         const parameters = value._attributes;
 

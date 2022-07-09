@@ -1,3 +1,3 @@
-module.exports = (ruleId, message) => {
+export default (ruleId, message) => {
     console.error(`${ruleId}: ${message}`);
 }
