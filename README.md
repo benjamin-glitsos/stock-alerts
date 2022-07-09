@@ -14,3 +14,14 @@ Create a `.stock-alerts.xml` file in your home directory.
     <PriceMaximum id="PriceMaximumGOOG1000" symbol="GOOG" price="1000" message="Google price has exceeded ${{price}}." />
 </Rules>
 ```
+
+## Configuration
+
+* Global
+  * yahooFinanceApiKey
+* Rules
+  * PriceMinimum
+    * id
+    * symbol
+    * price
+    * message
