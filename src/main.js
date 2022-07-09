@@ -14,6 +14,9 @@ const handleError = require("./utilities/handleError");
     const configSettings = config.Rules._attributes;
     const configRules = config.Rules;
 
+    // TODO: handleNotify - sending emails using an API
+    // TODO: cron (note - load xml on each run; this allows it to 'hot load' the config)
+    // TODO: handleError should log to /tmp
     await Promise.all(Object.entries(configRules).map(([rule, value]) => {
         const parameters = value._attributes;
         const context = {
