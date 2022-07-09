@@ -1,7 +1,7 @@
 const fs = require("fs");
 const fsPromises = fs.promises;
 const parseXml = require("xml-js");
-const axios = require("axios");
+const handleRule = require("./utilities/handleRule");
 
 (async () => {
     try {
@@ -13,28 +13,16 @@ const axios = require("axios");
         const configSettings = config.Rules._attributes;
         const configRules = config.Rules;
 
-        for (const key in configRules) {
-            const attributes = configRules[key]._attributes;
-            if (attributes) {
+        await Promise.all(Object.entries(configRules).map(([key, value]) => {
+            const parameters = value._attributes;
+            if (parameters) {
                 switch (key) {
                     case "PriceMinimum":
-                        console.log(require("./rules/priceMinimum")(attributes))
+                        handleRule("priceMinimum", configSettings, parameters);
                 }
             }
-        }
+        }));
 
-        // await Promise.all()
-
-        // const res = await axios.get(
-        //     `https://yfapi.net/v11/finance/quoteSummary/AAPL?modules=summaryDetail`,
-        //     {
-        //         headers: {
-        //             "x-api-key": configSettings.yahooFinanceApiKey,
-        //         },
-        //     }
-        // );
-        //
-        // console.log(res.data.quoteSummary.result[0].summaryDetail.previousClose.raw);
     } catch(err) {
         console.error(err);
     }
