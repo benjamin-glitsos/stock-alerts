@@ -7,7 +7,15 @@ fs.readFile(`${process.env.HOME}/.stock-alerts.xml`, "utf8", (err, data) => {
     console.error(err);
     return;
   }
-  console.log(
-      parseXml.xml2json(data, {compact: true})
-  );
+
+  const config = parseXml.xml2js(data, { compact: true });
+  const globalConfig = config.Rules._attributes;
+  axios
+    .get("https://yfapi.net/v11/finance/quoteSummary/AAPL?modules=defaultKeyStatistics", {
+      headers: {
+        "x-api-key": globalConfig.yahooFinanceApiKey,
+      },
+    })
+    .then((res) => console.log(JSON.stringify(res.data)))
+    .catch((error) => console.error(error));
 });
