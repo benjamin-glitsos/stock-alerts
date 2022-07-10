@@ -14,10 +14,11 @@ import priceMinimum from "./ruleTypes/priceMinimum.js";
     const configSettings = config.Rules._attributes;
     const configRules = config.Rules;
 
+    // TODO: use a template file to make the email be in a table format. Possibly switch from mustache to a fuller templating library
+    // TODO: email template should include link to open full yahoo finance page for the symbol
     // TODO: cron (note - load xml on each run; this allows it to 'hot load' the config)
     // TODO: instead of cron, put everything on a one day loop. And have a max occurrence field - daily, weekly, monthly
     // TODO: handleError should log to /var/log
-    // TODO: email template should include link to open full yahoo finance page for the symbol
     await Promise.all(
         Object.entries(configRules).map(([rule, value]) => {
             const parameters = value._attributes;

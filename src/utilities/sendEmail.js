@@ -4,9 +4,12 @@ import handleError from "./handleError.js";
 export default async ({
     apiKey,
     id,
-    sender,
-    recipient,
-    replyTo,
+    senderAddress,
+    senderName,
+    recipientAddress,
+    recipientName,
+    replyToAddress,
+    replyToName,
     subject,
     body: emailBody
 }) => {
@@ -19,9 +22,11 @@ export default async ({
         };
 
         const body = {
-            personalizations: [{ to: [{ email: recipient }] }],
-            from: { email: sender },
-            reply_to: { email: replyTo },
+            personalizations: [
+                { to: [{ email: recipientAddress, name: recipientName }] }
+            ],
+            from: { email: senderAddress, name: senderName },
+            reply_to: { email: replyToAddress, name: replyToName },
             subject,
             content: [
                 {

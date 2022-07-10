@@ -17,7 +17,7 @@ export default async (settings, { id, symbol, price }) => {
         return handleEvent(settings, {
             id,
             symbol,
-            message: `Price <b>${previousClose}</b> is below minimum of <b>${price}</b>`
+            message: `Price <b>$${previousClose}</b> is below minimum of <b>$${price}</b>`
         });
     }
 };

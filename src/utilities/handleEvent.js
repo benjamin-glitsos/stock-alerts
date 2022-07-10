@@ -4,7 +4,16 @@ import { v4 as uuidv4 } from "uuid";
 import sendEmail from "./sendEmail.js";
 
 export default async (
-    { sendGridApiKey, emailSender, emailRecipient, emailSubject, emailReplyTo },
+    {
+        sendGridApiKey,
+        emailSenderAddress,
+        emailSenderName,
+        emailRecipientAddress,
+        emailRecipientName,
+        emailReplyToAddress,
+        emailReplyToName,
+        emailSubject
+    },
     parameters
 ) => {
     const { id, symbol, message } = parameters;
@@ -27,9 +36,12 @@ export default async (
     sendEmail({
         apiKey: sendGridApiKey,
         id,
-        sender: emailSender,
-        recipient: emailRecipient,
-        replyTo: emailReplyTo,
+        senderAddress: emailSenderAddress,
+        senderName: emailSenderName,
+        recipientAddress: emailRecipientAddress,
+        recipientName: emailRecipientName,
+        replyToAddress: emailReplyToAddress,
+        replyToName: emailReplyToName,
         subject: subjectTemplated,
         body: message
     });
