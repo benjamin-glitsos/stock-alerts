@@ -5,14 +5,19 @@ export default async (settings, { id, symbol, price }) => {
         `https://yfapi.net/v11/finance/quoteSummary/${symbol}?modules=summaryDetail`,
         {
             headers: {
-                "x-api-key": settings.yahooFinanceApiKey,
-            },
+                "x-api-key": settings.yahooFinanceApiKey
+            }
         }
     );
 
-    const previousClose = quote.data.quoteSummary.result[0].summaryDetail.previousClose.raw;
+    const previousClose =
+        quote.data.quoteSummary.result[0].summaryDetail.previousClose.raw;
 
     if (previousClose < price) {
-        return { id, symbol, message: `Price ${previousClose} is below minimum of ${price}` }
+        return {
+            id,
+            symbol,
+            message: `Price ${previousClose} is below minimum of ${price}`
+        };
     }
 };

@@ -2,7 +2,7 @@
 
 ## Requirements
 
-* Linux
+-   Linux
 
 ## Get started
 
@@ -20,12 +20,12 @@ Create a `.stock-alerts.xml` file in your home directory.
 
 ## Configuration
 
-* Rules
-  * yahooFinanceApiKey
-  * sendGridApiKey
-  * sendGridSubject
-  * PriceMinimum
-    * id
-    * symbol
-    * price
-    * message
+-   Rules
+    -   yahooFinanceApiKey
+    -   sendGridApiKey
+    -   sendGridSubject
+    -   PriceMinimum
+        -   id
+        -   symbol
+        -   price
+        -   message
