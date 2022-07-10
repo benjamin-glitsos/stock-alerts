@@ -4,7 +4,8 @@
 
 ## Requirements
 
--   Linux
+- Linux
+- Node.js
 
 ## Get started
 
@@ -29,18 +30,18 @@ Create a `.stock-alerts.xml` file in your home directory.
 
 ## Configuration
 
--   Rules
-    -   yahooFinanceApiKey
-    -   sendGridApiKey
-    -   emailSenderAddress
-    -   emailSenderName
-    -   emailRecipientAddress
-    -   emailRecipientName
-    -   emailReplyToAddress
-    -   emailReplyToName
-    -   emailSubject
-    -   PriceMinimum
-        -   id
-        -   symbol
-        -   price
-        -   message
+- Rules
+  - yahooFinanceApiKey
+  - sendGridApiKey
+  - emailSenderAddress
+  - emailSenderName
+  - emailRecipientAddress
+  - emailRecipientName
+  - emailReplyToAddress
+  - emailReplyToName
+  - emailSubject
+  - PriceMinimum
+    - id
+    - symbol
+    - price
+    - message
