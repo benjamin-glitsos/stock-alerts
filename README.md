@@ -1,5 +1,7 @@
 # Stock alerts
 
+<b>Note:</b> this is a work in progress.
+
 ## Requirements
 
 -   Linux
