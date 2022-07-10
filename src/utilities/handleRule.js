@@ -1,4 +1,4 @@
-import handleError from "./handleError";
+import handleError from "./handleError.js";
 import Mustache from "mustache";
 import { v4 as uuidv4 } from "uuid";
 
