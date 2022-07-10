@@ -16,6 +16,7 @@ import priceMinimum from "./ruleTypes/priceMinimum.js";
 
     // TODO: use a template file to make the email be in a table format. Possibly switch from mustache to a fuller templating library
     // TODO: email template should include link to open full yahoo finance page for the symbol
+    // TODO: message attribute should be in markdown format, and converted to HTML using a node.js library
     // TODO: cron (note - load xml on each run; this allows it to 'hot load' the config)
     // TODO: instead of cron, put everything on a one day loop. And have a max occurrence field - daily, weekly, monthly
     // TODO: handleError should log to /var/log

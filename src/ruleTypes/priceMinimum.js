@@ -4,6 +4,8 @@ import handleEvent from "../utilities/handleEvent.js";
 import handleError from "../utilities/handleError.js";
 
 export default async (settings, { id, symbol, price }) => {
+    const eventName = "Price below minimum";
+
     const quote = await getStockQuote({
         apiKey: settings.yahooFinanceApiKey,
         id,
@@ -17,6 +19,7 @@ export default async (settings, { id, symbol, price }) => {
         return handleEvent(settings, {
             id,
             symbol,
+            eventName,
             message: `Price <b>$${previousClose}</b> is below minimum of <b>$${price}</b>`
         });
     }

@@ -16,7 +16,7 @@ export default async (
     },
     parameters
 ) => {
-    const { id, symbol, message } = parameters;
+    const { id, symbol, ruleName, message } = parameters;
 
     const eventId = uuidv4();
     const dateTime = new Date().toUTCString();
@@ -24,14 +24,6 @@ export default async (
         ? Mustache.render(message, parameters)
         : message;
     const subjectTemplated = Mustache.render(emailSubject, parameters);
-
-    console.log({
-        eventId,
-        dateTime,
-        id,
-        symbol,
-        message: messageTemplated
-    });
 
     sendEmail({
         apiKey: sendGridApiKey,
