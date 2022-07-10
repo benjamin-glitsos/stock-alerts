@@ -12,9 +12,12 @@ Create a `.stock-alerts.xml` file in your home directory.
 <Rules
     yahooFinanceApiKey="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
     sendGridApiKey="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-    sendGridSubject="Stock alert for {{symbol}} ({{id}})">
+    emailSender="sender+stockalerts@example.com"
+    emailRecipient="recipient@example.com"
+    emailReplyTo="no-reply@gmail.com"
+    emailSubject="Stock alert for {{symbol}} ({{id}})">
     <PriceMinimum id="PriceMinimumAAPL500" symbol="AAPL" price="500" />
-    <PriceMaximum id="PriceMaximumGOOG1000" symbol="GOOG" price="1000" message="Google price has exceeded ${{price}}." />
+    <PriceMaximum id="PriceMaximumGOOG1000" symbol="GOOG" price="1000" message="Google price has exceeded <b>${{price}}</b>." />
 </Rules>
 ```
 
@@ -23,7 +26,10 @@ Create a `.stock-alerts.xml` file in your home directory.
 -   Rules
     -   yahooFinanceApiKey
     -   sendGridApiKey
-    -   sendGridSubject
+    -   emailSender
+    -   emailRecipient
+    -   emailReplyTo
+    -   emailSubject
     -   PriceMinimum
         -   id
         -   symbol

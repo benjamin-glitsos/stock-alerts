@@ -14,7 +14,6 @@ import priceMinimum from "./ruleTypes/priceMinimum.js";
     const configSettings = config.Rules._attributes;
     const configRules = config.Rules;
 
-    // TODO: handleNotify - sending emails using SendGrid API
     // TODO: cron (note - load xml on each run; this allows it to 'hot load' the config)
     // TODO: instead of cron, put everything on a one day loop. And have a max occurrence field - daily, weekly, monthly
     // TODO: handleError should log to /var/log
