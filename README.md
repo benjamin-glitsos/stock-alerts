@@ -15,6 +15,7 @@ Create a `.stock-alerts.xml` file in your home directory.
 <Rules
     yahooFinanceApiKey="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
     sendGridApiKey="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    emailEnabled="Yes"
     emailSenderAddress="sender+stockalerts@example.com"
     emailSenderName="Stock Alert"
     emailRecipientAddress="recipient@example.com"
@@ -33,6 +34,7 @@ Create a `.stock-alerts.xml` file in your home directory.
 - Rules
   - yahooFinanceApiKey
   - sendGridApiKey
+  - emailEnabled
   - emailSenderAddress
   - emailSenderName
   - emailRecipientAddress

@@ -5,12 +5,12 @@ import priceMinimum from "./ruleTypes/priceMinimum.js";
 
 (async () => {
     const configFilepath = `${process.env.HOME}/.stock-alerts.xml`;
-    const configXml = await fsPromises
+    const config = await fsPromises
         .readFile(configFilepath, "utf8")
         .catch(err =>
             console.error(`Could not open config file: ${configFilepath}`)
-        );
-    const config = parseXml.xml2js(configXml, { compact: true });
+        )
+        .then(data => parseXml.xml2js(data, { compact: true }));
     const configSettings = config.Rules._attributes;
     const configRules = config.Rules;
 

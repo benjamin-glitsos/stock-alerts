@@ -1,9 +1,11 @@
 import axios from "axios";
 import handleError from "./handleError.js";
+import parseYesNo from "./parseYesNo.js";
 
 export default async ({
     apiKey,
     id,
+    enabled,
     senderAddress,
     senderName,
     recipientAddress,
@@ -36,11 +38,13 @@ export default async ({
             ]
         };
 
-        return await axios.post(
-            `https://api.sendgrid.com/v3/mail/send`,
-            body,
-            headers
-        );
+        if (parseYesNo("Yes")) {
+            return await axios.post(
+                `https://api.sendgrid.com/v3/mail/send`,
+                body,
+                headers
+            );
+        }
     } catch (err) {
         console.error(err);
         handleError(id, `Could not send email: '${subject}'`);

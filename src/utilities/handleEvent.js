@@ -6,6 +6,7 @@ import sendEmail from "./sendEmail.js";
 export default async (
     {
         sendGridApiKey,
+        emailEnabled,
         emailSenderAddress,
         emailSenderName,
         emailRecipientAddress,
@@ -28,6 +29,7 @@ export default async (
     sendEmail({
         apiKey: sendGridApiKey,
         id,
+        enabled: emailEnabled,
         senderAddress: emailSenderAddress,
         senderName: emailSenderName,
         recipientAddress: emailRecipientAddress,
