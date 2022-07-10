@@ -2,12 +2,10 @@ import handleError from "./handleError.js";
 import Mustache from "mustache";
 import { v4 as uuidv4 } from "uuid";
 
-export default async (ruleTypeFilename, settings, parameters) => {
+export default async (ruleType, settings, parameters) => {
     try {
-        const result = await require(`../ruleTypes/${ruleTypeFilename}`)(
-            settings,
-            parameters
-        );
+        const result = await ruleType(settings, parameters);
+
         if (result) {
             const eventId = uuidv4();
             const dateTime = new Date().toUTCString();
