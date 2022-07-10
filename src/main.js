@@ -15,7 +15,6 @@ import priceMinimum from "./ruleTypes/priceMinimum.js";
     const configSettings = config.Rules._attributes;
     const configRules = config.Rules;
 
-    // TODO: make the yahoo endpoint and return object into a utility (automatically adds date and event id)
     // TODO: handleNotify - sending emails using SendGrid API
     // TODO: cron (note - load xml on each run; this allows it to 'hot load' the config)
     // TODO: instead of cron, put everything on a one day loop. And have a max occurrence field - daily, weekly, monthly
@@ -28,7 +27,7 @@ import priceMinimum from "./ruleTypes/priceMinimum.js";
             if (parameters) {
                 switch (rule) {
                     case "PriceMinimum":
-                        handleRule(priceMinimum, configSettings, parameters);
+                        priceMinimum(configSettings, parameters);
                         break;
                     default:
                         handleError(
