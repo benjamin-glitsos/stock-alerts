@@ -1,6 +1,5 @@
 import { promises as fsPromises } from "fs";
 import parseXml from "xml-js";
-import handleRule from "./utilities/handleRule.js";
 import handleError from "./utilities/handleError.js";
 import priceMinimum from "./ruleTypes/priceMinimum.js";
 
