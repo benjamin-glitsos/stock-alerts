@@ -22,7 +22,8 @@ Create a `.stock-alerts.xml` file in your home directory.
     emailReplyToName="No reply"
     emailSubject="Stock alert for {{symbol}} ({{id}})">
     <PriceMinimum id="PriceMinimumAAPL500" symbol="AAPL" price="500" />
-    <PriceMaximum id="PriceMaximumGOOG1000" symbol="GOOG" price="1000" message="Google price has exceeded <b>${{price}}</b>." />
+    <PriceMaximum id="PriceMaximumGOOG1000" symbol="GOOG" price="1000"
+        message="Google price has exceeded <b>${{price}}</b>." />
 </Rules>
 ```
 
