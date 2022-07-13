@@ -14,9 +14,6 @@ import priceMinimum from "./ruleTypes/priceMinimum.js";
     const configSettings = config.Rules._attributes;
     const configRules = config.Rules;
 
-    // TODO: use a template file to make the email be in a table format. Possibly switch from mustache to a fuller templating library
-    // TODO: email template should include link to open full yahoo finance page for the symbol
-    // TODO: message attribute should be in markdown format, and converted to HTML using a node.js library
     // TODO: rules should be: Reminder, PriceLimit, PriceChange, ProfitLimit
     // TODO: make sure commenting out rules is working
     // TODO: add currency conversion using yahoo finance api. put this inside every ruleType

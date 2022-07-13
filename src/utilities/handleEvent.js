@@ -1,10 +1,11 @@
 import handleError from "./handleError.js";
 import Mustache from "mustache";
 import { v4 as uuidv4 } from "uuid";
+import { parseInline as parseMarkdown } from "marked";
 import sendEmail from "./sendEmail.js";
 
-export default async (
-    {
+export default async (settings, parameters) => {
+    const {
         sendGridApiKey,
         emailEnabled,
         emailSenderAddress,
@@ -14,16 +15,12 @@ export default async (
         emailReplyToAddress,
         emailReplyToName,
         emailSubject
-    },
-    parameters
-) => {
+    } = settings;
     const { id, symbol, ruleName, message } = parameters;
 
     const eventId = uuidv4();
     const dateTime = new Date().toUTCString();
-    const messageTemplated = message
-        ? Mustache.render(message, parameters)
-        : message;
+    const messageHtml = Mustache.render(parseMarkdown(message), parameters);
     const subjectTemplated = Mustache.render(emailSubject, parameters);
 
     const eventParameters = {
@@ -41,7 +38,7 @@ export default async (
         replyToAddress: emailReplyToAddress,
         replyToName: emailReplyToName,
         subject: subjectTemplated,
-        message
+        message: messageHtml
     };
 
     sendEmail({
