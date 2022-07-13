@@ -36,10 +36,13 @@ export default async (settings, parameters) => {
             );
     }
 
+    const subject = `${symbol}: ${eventName}`;
+
     if (isTriggered) {
         handleEvent(settings, {
             ...eventParameters,
             eventName,
+            subject,
             message: message || eventMessage
         });
     }

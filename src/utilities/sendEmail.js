@@ -58,6 +58,8 @@ export default async parameters => {
                 body,
                 headers
             );
+        } else {
+            console.log(content);
         }
     } catch (err) {
         console.error(err);

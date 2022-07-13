@@ -13,15 +13,13 @@ export default async (settings, parameters) => {
         emailRecipientAddress,
         emailRecipientName,
         emailReplyToAddress,
-        emailReplyToName,
-        emailSubject
+        emailReplyToName
     } = settings;
-    const { id, symbol, ruleName, message } = parameters;
+    const { id, symbol, ruleName, subject, message } = parameters;
 
     const eventId = uuidv4();
     const dateTime = new Date().toUTCString();
     const messageHtml = Mustache.render(parseMarkdown(message), parameters);
-    const subjectTemplated = Mustache.render(emailSubject, parameters);
 
     const eventParameters = {
         apiKey: sendGridApiKey,
@@ -37,7 +35,7 @@ export default async (settings, parameters) => {
         recipientName: emailRecipientName,
         replyToAddress: emailReplyToAddress,
         replyToName: emailReplyToName,
-        subject: subjectTemplated,
+        subject,
         message: messageHtml
     };
 
