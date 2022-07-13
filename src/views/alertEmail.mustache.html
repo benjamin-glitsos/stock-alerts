@@ -5,6 +5,22 @@
         <title>{{ subject }}</title>
     </head>
     <body>
-        <p>{{ message }}</p>
+        <p style="font-size: 125%;">{{ message }}</p>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Date and time</td>
+                    <td>{{ dateTime }}</td>
+                </tr>
+                <tr>
+                    <td>Rule ID</td>
+                    <td>{{ id }}</td>
+                </tr>
+                <tr>
+                    <td>Event ID</td>
+                    <td>{{ eventId }}</td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>

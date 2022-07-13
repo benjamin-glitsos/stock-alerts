@@ -26,9 +26,13 @@ export default async (
         : message;
     const subjectTemplated = Mustache.render(emailSubject, parameters);
 
-    sendEmail({
+    const eventParameters = {
         apiKey: sendGridApiKey,
-        id,
+        eventId,
+        dateTime
+    };
+
+    const emailParameters = {
         enabled: emailEnabled,
         senderAddress: emailSenderAddress,
         senderName: emailSenderName,
@@ -38,5 +42,11 @@ export default async (
         replyToName: emailReplyToName,
         subject: subjectTemplated,
         message
+    };
+
+    sendEmail({
+        ...parameters,
+        ...eventParameters,
+        ...emailParameters
     });
 };

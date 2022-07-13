@@ -12,26 +12,23 @@ const emailTemplate = fs.readFileSync(
     }
 );
 
-export default async ({
-    apiKey,
-    id,
-    enabled,
-    senderAddress,
-    senderName,
-    recipientAddress,
-    recipientName,
-    replyToAddress,
-    replyToName,
-    subject,
-    message
-}) => {
+export default async parameters => {
     try {
-        // const content = await fsPromises
-        //     .readFile("../views/alertEmail.mustache.html", "utf8")
-        //     .then(emailTemplate =>
-        //         Mustache.render(emailTemplate, { subject, message })
-        //     );
-        const content = emailTemplate;
+        const {
+            apiKey,
+            id,
+            enabled,
+            senderAddress,
+            senderName,
+            recipientAddress,
+            recipientName,
+            replyToAddress,
+            replyToName,
+            subject,
+            message
+        } = parameters;
+
+        const content = Mustache.render(emailTemplate, parameters);
 
         const headers = {
             headers: {
