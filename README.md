@@ -22,11 +22,15 @@ Create a `.stock-alerts.xml` file in your home directory.
     emailRecipientName="Jane Doe"
     emailReplyToAddress="no-reply@gmail.com"
     emailReplyToName="No reply">
+
+    <!-- Reminders: -->
+    <Reminder id="rem1"
+        message="Each week, remember to **[check your portfolio](https://au.finance.yahoo.com/portfolio/p_0/view/v1)**." />
+
+    <!-- Apple Inc (AAPL): -->
     <PriceLimit id="AAPLMinimum500" symbol="AAPL" type="minimum" price="500" />
     <PriceLimit id="AAPLMaximum20" symbol="AAPL" type="maximum" price="20"
         message="**Apple Inc** price has exceeded **${{price}}**." />
-    <Reminder id="rem1"
-        message="Each week, remember to **[check your portfolio](https://au.finance.yahoo.com/portfolio/p_0/view/v1)**." />
 </Rules>
 ```
 
