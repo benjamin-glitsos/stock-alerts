@@ -53,12 +53,11 @@ export default async parameters => {
         };
 
         if (parseYesNo("Yes")) {
-            // await axios.post(
-            //     `https://api.sendgrid.com/v3/mail/send`,
-            //     body,
-            //     headers
-            // );
-            console.log(content);
+            await axios.post(
+                `https://api.sendgrid.com/v3/mail/send`,
+                body,
+                headers
+            );
         }
     } catch (err) {
         console.error(err);

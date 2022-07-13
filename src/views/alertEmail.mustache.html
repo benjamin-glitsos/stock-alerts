@@ -5,19 +5,20 @@
         <title>{{ subject }}</title>
     </head>
     <body>
-        <p style="font-size: 125%;">{{ message }}</p>
-        <table>
+        <p style="font-size: 150%;"><b>{{ symbol }}:</b> {{{ message }}}</p>
+        <p><a href="https://au.finance.yahoo.com/quote/{{ symbol }}">View on Yahoo Finance</a></p>
+        <table style="text-align: left;">
             <tbody>
                 <tr>
-                    <td>Date and time</td>
+                    <th>Date/time</th>
                     <td>{{ dateTime }}</td>
                 </tr>
                 <tr>
-                    <td>Rule ID</td>
+                    <th>Rule ID</th>
                     <td>{{ id }}</td>
                 </tr>
                 <tr>
-                    <td>Event ID</td>
+                    <th>Event ID</th>
                     <td>{{ eventId }}</td>
                 </tr>
             </tbody>
