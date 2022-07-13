@@ -1,1 +1,1 @@
-export default yesNo => (yesNo === "Yes" ? true : false);
+export default yesOrNo => (yesOrNo === "Yes" ? true : false);

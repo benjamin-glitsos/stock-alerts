@@ -52,7 +52,7 @@ export default async parameters => {
             ]
         };
 
-        if (parseYesNo("Yes")) {
+        if (parseYesNo(enabled)) {
             await axios.post(
                 `https://api.sendgrid.com/v3/mail/send`,
                 body,
