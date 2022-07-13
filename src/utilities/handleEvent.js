@@ -37,6 +37,6 @@ export default async (
         replyToAddress: emailReplyToAddress,
         replyToName: emailReplyToName,
         subject: subjectTemplated,
-        body: message
+        message
     });
 };

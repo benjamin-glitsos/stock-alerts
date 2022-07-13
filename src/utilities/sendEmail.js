@@ -1,6 +1,16 @@
+import fs from "fs";
+import path from "path";
 import axios from "axios";
+import Mustache from "mustache";
 import handleError from "./handleError.js";
 import parseYesNo from "./parseYesNo.js";
+
+const emailTemplate = fs.readFileSync(
+    path.resolve(`${path.resolve()}/src/views/alertEmail.mustache.html`),
+    {
+        encoding: "utf8"
+    }
+);
 
 export default async ({
     apiKey,
@@ -13,9 +23,16 @@ export default async ({
     replyToAddress,
     replyToName,
     subject,
-    body: emailBody
+    message
 }) => {
     try {
+        // const content = await fsPromises
+        //     .readFile("../views/alertEmail.mustache.html", "utf8")
+        //     .then(emailTemplate =>
+        //         Mustache.render(emailTemplate, { subject, message })
+        //     );
+        const content = emailTemplate;
+
         const headers = {
             headers: {
                 "Authorization": `Bearer ${apiKey}`,
@@ -33,17 +50,18 @@ export default async ({
             content: [
                 {
                     type: "text/html",
-                    value: emailBody
+                    value: content
                 }
             ]
         };
 
         if (parseYesNo("Yes")) {
-            return await axios.post(
-                `https://api.sendgrid.com/v3/mail/send`,
-                body,
-                headers
-            );
+            // await axios.post(
+            //     `https://api.sendgrid.com/v3/mail/send`,
+            //     body,
+            //     headers
+            // );
+            console.log(content);
         }
     } catch (err) {
         console.error(err);
