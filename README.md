@@ -45,5 +45,6 @@ Create a `.stock-alerts.xml` file in your home directory.
   - PriceMinimum
     - id
     - symbol
+    - type
     - price
     - message
