@@ -10,7 +10,7 @@ export default async ({ apiKey, id, symbol, range }) => {
         };
 
         return await axios.get(
-            `https://yfapi.net/v8/finance/spark?symbols=${symbol}&range=${range}&interval=1d`,
+            `https://yfapi.net/v8/finance/chart/${symbol}?range=${range}&interval=1d&region=AU`,
             headers
         );
     } catch (err) {

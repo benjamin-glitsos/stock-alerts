@@ -1,8 +1,9 @@
 import { promises as fsPromises } from "fs";
 import parseXml from "xml-js";
 import handleError from "./utilities/handleError.js";
-import priceLimit from "./ruleTypes/priceLimit.js";
 import reminder from "./ruleTypes/reminder.js";
+import priceLimit from "./ruleTypes/priceLimit.js";
+import priceChange from "./ruleTypes/priceChange.js";
 
 (async () => {
     const configFilepath = `${process.env.HOME}/.stock-alerts.xml`;
@@ -17,7 +18,9 @@ import reminder from "./ruleTypes/reminder.js";
     const configSettings = config.Rules._attributes;
     const configRules = config.Rules;
 
-    // TODO: add rules: PriceChange, ProfitLimit
+    // TODO: use getStockChart for everything, delete getStockQuote
+    // TODO: use yahoo finance chart instead of spark because it has automatic currency conversion I think
+    // TODO: make the region: US / AU / etc configurable via the config XML
     // TODO: use Handlebars instead of Mustache in order to remove "View on Yahoo Finance" from email when symbol doesn't exist
     // TODO: pass values to sendEmail without renaming them. And also to handlEvent without renaming and other functions.
     // TODO: add currency conversion using yahoo finance api. put this inside every ruleType
@@ -31,11 +34,14 @@ import reminder from "./ruleTypes/reminder.js";
 
             if (parameters) {
                 switch (rule) {
+                    case "Reminder":
+                        reminder(configSettings, parameters);
+                        break;
                     case "PriceLimit":
                         priceLimit(configSettings, parameters);
                         break;
-                    case "Reminder":
-                        reminder(configSettings, parameters);
+                    case "PriceChange":
+                        priceChange(configSettings, parameters);
                         break;
                     default:
                         handleError(
