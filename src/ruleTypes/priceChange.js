@@ -1,16 +1,19 @@
-import getStockChart from "../utilities/getStockChart.js";
+import getStockPrices from "../utilities/getStockPrices.js";
 import handleEvent from "../utilities/handleEvent.js";
 import handleError from "../utilities/handleError.js";
+import roundTwoDecimals from "../utilities/roundTwoDecimals.js";
 
 export default async (settings, parameters) => {
     const { id, symbol, type, unit, value, range, message } = parameters;
 
-    const previousClose = await getStockChart({
+    const [firstPrice, lastPrice] = await getStockPrices({
         apiKey: settings.yahooFinanceApiKey,
         id,
         symbol,
         range
-    }).then(res => console.log(res.data.chart.result[0]));
+    }).then(ps => ps.map(roundTwoDecimals));
+
+    console.log(firstPrice, lastPrice);
 
     // const eventParameters = {
     //     ...parameters,
