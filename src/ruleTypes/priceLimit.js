@@ -21,12 +21,12 @@ export default async (settings, parameters) => {
     switch (type) {
         case "minimum":
             var eventName = "Price below minimum";
-            var eventMessage = `Price **$${lastPrice}** is below minimum of **$${price}**`;
+            var eventMessage = `Price **${lastPrice} USD** is below minimum of **${price} USD**`;
             var isTriggered = lastPrice < price;
             break;
         case "maximum":
             var eventName = "Price above maximum";
-            var eventMessage = `Price **$${lastPrice}** is above maximum of **$${price}**`;
+            var eventMessage = `Price **${lastPrice} USD** is above maximum of **${price} USD**`;
             var isTriggered = lastPrice > price;
             break;
         default:
