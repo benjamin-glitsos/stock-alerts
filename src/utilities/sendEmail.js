@@ -6,22 +6,22 @@ import handleError from "./handleError.js";
 import parseYesNo from "./parseYesNo.js";
 
 export default async parameters => {
-    try {
-        const {
-            template,
-            apiKey,
-            id,
-            enabled,
-            senderAddress,
-            senderName,
-            recipientAddress,
-            recipientName,
-            replyToAddress,
-            replyToName,
-            subject,
-            message
-        } = parameters;
+    const {
+        template,
+        apiKey,
+        id,
+        enabled,
+        senderAddress,
+        senderName,
+        recipientAddress,
+        recipientName,
+        replyToAddress,
+        replyToName,
+        subject,
+        message
+    } = parameters;
 
+    try {
         const content = await fsPromises
             .readFile(
                 path.resolve(
@@ -53,6 +53,7 @@ export default async parameters => {
             ]
         };
 
+        throw Error();
         if (parseYesNo(enabled)) {
             await axios.post(
                 `https://api.sendgrid.com/v3/mail/send`,
@@ -63,7 +64,6 @@ export default async parameters => {
             console.log(content);
         }
     } catch (err) {
-        console.error(err);
         handleError(id, `Could not send email: '${subject}'`);
     }
 };
