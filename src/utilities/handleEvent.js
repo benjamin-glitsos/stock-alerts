@@ -3,6 +3,7 @@ import Mustache from "mustache";
 import { v4 as uuidv4 } from "uuid";
 import { parseInline as parseMarkdown } from "marked";
 import sendEmail from "./sendEmail.js";
+import logEvent from "./logEvent.js";
 
 export default async (settings, parameters) => {
     const {
@@ -18,14 +19,18 @@ export default async (settings, parameters) => {
     const { id, symbol, ruleName, subject, message, emailTemplate } =
         parameters;
 
+    const [dateTimePretty, dateTimeLog] = [new Date()].flatMap(x => [
+        x.toUTCString(),
+        x.toISOString()
+    ]);
+
     const eventId = uuidv4();
-    const dateTime = new Date().toUTCString();
     const messageHtml = Mustache.render(parseMarkdown(message), parameters);
 
     const eventParameters = {
         apiKey: sendGridApiKey,
         eventId,
-        dateTime
+        dateTime: dateTimePretty
     };
 
     const emailParameters = {
@@ -45,5 +50,13 @@ export default async (settings, parameters) => {
         ...parameters,
         ...eventParameters,
         ...emailParameters
+    });
+
+    logEvent({
+        isError: false,
+        dateTime: dateTimeLog,
+        ruleId: id,
+        description: subject,
+        eventId
     });
 };
