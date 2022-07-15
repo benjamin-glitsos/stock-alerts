@@ -19,7 +19,6 @@ import priceChange from "./ruleTypes/priceChange.js";
     const configRules = config.Rules;
 
     // TODO: handleError should send email
-    // TODO: handleEvent should console log (this is a simple alternative to logging to a log file)
     // TODO: pass values to sendEmail without renaming them. And also to handlEvent without renaming and other functions.
     // TODO: load xml on each run; this allows it to 'hot load' the config
     // TODO: don't use' cron, instead, put everything on a one day loop. And have an 'every' field to throttle it using local memory - takes a number (this will be number of days). The throttle stores into an object in memory with the rule IDs as keys and dates as values

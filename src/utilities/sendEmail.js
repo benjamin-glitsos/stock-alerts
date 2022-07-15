@@ -53,15 +53,16 @@ export default async parameters => {
             ]
         };
 
-        throw Error();
         if (parseYesNo(enabled)) {
             await axios.post(
                 `https://api.sendgrid.com/v3/mail/send`,
                 body,
                 headers
             );
+            return true;
         } else {
             console.log(content);
+            return false;
         }
     } catch (err) {
         handleError(id, `Could not send email: '${subject}'`);

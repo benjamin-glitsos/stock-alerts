@@ -46,17 +46,19 @@ export default async (settings, parameters) => {
         message: messageHtml
     };
 
-    sendEmail({
+    const allParameters = {
         ...parameters,
         ...eventParameters,
         ...emailParameters
-    });
+    };
 
-    logEvent({
+    const logEventParameters = {
         isError: false,
         dateTime: dateTimeLog,
         ruleId: id,
         description: subject,
         eventId
-    });
+    };
+
+    (await sendEmail(allParameters)) && logEvent(logEventParameters);
 };
