@@ -8,6 +8,8 @@ import handleError from "./utilities/handleError.js";
 
 const configFilepath = `${process.env.HOME}/.stock-alerts.xml`;
 
+var runHistory = new Object();
+
 runLoop(async () => {
     const [configSettings, configRules] = await fsPromises
         .readFile(configFilepath, "utf8")
@@ -26,9 +28,8 @@ runLoop(async () => {
             })
         );
 
-    Object.entries(configRules).forEach(([rule, value]) => {
-        const parameters = value._attributes;
-
+    for (const rule in configRules) {
+        const parameters = configRules[rule]._attributes;
         switch (rule) {
             case "Reminder":
                 reminder(configSettings, parameters);
@@ -45,7 +46,7 @@ runLoop(async () => {
                     `Rule type '${rule}' is not recognised.`
                 );
         }
-    });
+    }
 });
 
 // TODO: finish writing PriceChange ruleType
