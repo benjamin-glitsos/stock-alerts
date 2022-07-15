@@ -1,15 +1,7 @@
-import isDevelopmentModeParser from "./isDevelopmentMode.js";
-import between from "./between.js";
-
-export default (fn, settings) => {
-    const isDevelopmentMode = isDevelopmentModeParser(settings.mode);
+export default (fn, intervalDays, isDevelopmentMode) => {
     const oneSecond = 1 * 1000;
-    const oneHour = 1 * 60 * 1000;
-    const interval = isDevelopmentMode ? oneSecond : oneHour;
+    const days = intervalDays * 60 * 60 * 1000;
+    const interval = isDevelopmentMode ? oneSecond : days;
 
-    setInterval(() => {
-        const condition =
-            between(new Date().getHours(), [9, 10]) || isDevelopmentMode;
-        if (condition) fn();
-    }, interval);
+    setInterval(fn, interval);
 };
