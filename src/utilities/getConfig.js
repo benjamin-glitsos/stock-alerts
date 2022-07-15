@@ -1,36 +1,37 @@
 import { promises as fsPromises } from "fs";
-import { parseString as parseXml } from "xml2js";
+import xml2js from "xml2js";
 
 const configFilepath = `${process.env.HOME}/.stock-alerts.xml`;
-const parseXmlOptions = { attrkey: "@" };
+const xmlParserOptions = { attrkey: "@" };
 
 export default async () => {
     try {
-        return fsPromises
+        const configXml = await fsPromises
             .readFile(configFilepath, "utf8")
             .catch(error => {
                 throw Error(`Could not open config file: ${configFilepath}`);
+            });
+
+        const xmlParser = new xml2js.Parser(xmlParserOptions);
+
+        const configJson = await xmlParser
+            .parseStringPromise(configXml)
+            .then(config => {
+                const settings = config.Rules["@"];
+                const rules = config.Rules;
+                delete rules["@"];
+                return {
+                    settings,
+                    rules
+                };
             })
-            .then(data => {
-                parseXml(data, parseXmlOptions, (error, result) => {
-                    if (error) {
-                        throw Error(
-                            `Config file is not valid XML: ${configFilepath}`
-                        );
-                    } else {
-                        return result;
-                    }
-                });
-            })
-            .then(
-                config =>
-                    [config].flatMap(x => {
-                        let settings = config.Rules._attributes;
-                        let rules = config.Rules;
-                        delete rules["_attributes"];
-                        return { settings, rules };
-                    })[0]
-            );
+            .catch(error => {
+                throw Error(
+                    `Could not parse config file (XML format is invalid): ${configFilepath}`
+                );
+            });
+
+        return configJson;
     } catch (error) {
         console.error(error);
     }

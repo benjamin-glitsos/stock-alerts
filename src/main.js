@@ -7,11 +7,12 @@ import runLoop from "./utilities/runLoop.js";
 import handleError from "./utilities/handleError.js";
 
 (async () => {
-    const { rules, settings } = await getConfig();
+    const { settings, rules } = await getConfig();
     const isDevelopmentMode = isDevelopmentModeParser(settings.mode);
     settings.isDevelopmentMode = isDevelopmentMode;
-    console.log(rules);
+    console.log(rules, settings);
 
+    // TODO: now, loop over the new data structure from the XML config (you'll need to use two for loops nested)
     for (const r in rules) {
         const parameters = rules[r]._attributes;
         switch (r) {
