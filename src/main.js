@@ -6,12 +6,11 @@ import isDevelopmentModeParser from "./utilities/isDevelopmentMode.js";
 import runLoop from "./utilities/runLoop.js";
 import handleError from "./utilities/handleError.js";
 
-// TODO: handle multiple rules
-
 (async () => {
     const { rules, settings } = await getConfig();
     const isDevelopmentMode = isDevelopmentModeParser(settings.mode);
     settings.isDevelopmentMode = isDevelopmentMode;
+    console.log(rules);
 
     for (const r in rules) {
         const parameters = rules[r]._attributes;
