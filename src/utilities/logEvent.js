@@ -8,8 +8,8 @@ export default ({ isError, dateTime, ruleId, description, eventId }) => {
     const eventIdLog = eventId || uuidv4();
     console.log(
         [
-            brackets(dateTimeLog),
             eventType,
+            brackets(dateTimeLog),
             brackets(ruleId),
             brackets(description),
             brackets(eventIdLog)
