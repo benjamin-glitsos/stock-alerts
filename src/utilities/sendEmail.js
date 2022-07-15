@@ -1,20 +1,14 @@
-import fs from "fs";
+import { promises as fsPromises } from "fs";
 import path from "path";
 import axios from "axios";
 import Mustache from "mustache";
 import handleError from "./handleError.js";
 import parseYesNo from "./parseYesNo.js";
 
-const emailTemplate = fs.readFileSync(
-    path.resolve(`${path.resolve()}/src/views/alertEmail.mustache.html`),
-    {
-        encoding: "utf8"
-    }
-);
-
 export default async parameters => {
     try {
         const {
+            template,
             apiKey,
             id,
             enabled,
@@ -28,7 +22,14 @@ export default async parameters => {
             message
         } = parameters;
 
-        const content = Mustache.render(emailTemplate, parameters);
+        const content = await fsPromises
+            .readFile(
+                path.resolve(
+                    `${path.resolve()}/src/views/${template}.mustache.html`
+                ),
+                "utf8"
+            )
+            .then(t => Mustache.render(t, parameters));
 
         const headers = {
             headers: {

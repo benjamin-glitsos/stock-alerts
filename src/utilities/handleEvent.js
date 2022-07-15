@@ -15,7 +15,8 @@ export default async (settings, parameters) => {
         emailReplyToAddress,
         emailReplyToName
     } = settings;
-    const { id, symbol, ruleName, subject, message } = parameters;
+    const { id, symbol, ruleName, subject, message, emailTemplate } =
+        parameters;
 
     const eventId = uuidv4();
     const dateTime = new Date().toUTCString();
@@ -28,6 +29,7 @@ export default async (settings, parameters) => {
     };
 
     const emailParameters = {
+        template: emailTemplate,
         enabled: emailEnabled,
         senderAddress: emailSenderAddress,
         senderName: emailSenderName,

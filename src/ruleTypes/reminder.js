@@ -6,11 +6,13 @@ export default async (settings, parameters) => {
 
     const eventName = "Reminder";
     const eventSubject = "Reminder from Stock Alerts";
-    const eventMessage = `No reminder message has been written for ${id}.`;
+    const eventMessage = `None.`;
+    const emailTemplate = "reminder";
 
     handleEvent(settings, {
         ...parameters,
         eventName,
+        emailTemplate,
         subject: eventSubject,
         eventSubject,
         message: message || eventMessage

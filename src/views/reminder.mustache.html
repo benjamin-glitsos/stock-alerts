@@ -5,8 +5,7 @@
         <title>{{ subject }}</title>
     </head>
     <body>
-        <p style="font-size: 150%;">{{{ message }}}</p>
-        <p><a href="https://finance.yahoo.com/quote/{{ symbol }}">View on Yahoo Finance</a></p>
+        <p style="font-size: 150%;"><strong>Reminder:</strong> {{{ message }}}</p>
         <table style="text-align: left;">
             <tbody>
                 <tr>
@@ -16,6 +15,10 @@
                 <tr>
                     <th>Rule ID</th>
                     <td>{{ id }}</td>
+                </tr>
+                <tr>
+                    <th>Event name</th>
+                    <td>{{ eventName }}</td>
                 </tr>
                 <tr>
                     <th>Event ID</th>
