@@ -6,6 +6,8 @@ import isDevelopmentModeParser from "./utilities/isDevelopmentMode.js";
 import runLoop from "./utilities/runLoop.js";
 import handleError from "./utilities/handleError.js";
 
+// TODO: handle multiple rules
+
 (async () => {
     const { rules, settings } = await getConfig();
     const isDevelopmentMode = isDevelopmentModeParser(settings.mode);
@@ -15,25 +17,13 @@ import handleError from "./utilities/handleError.js";
         const parameters = rules[r]._attributes;
         switch (r) {
             case "Reminder":
-                runLoop(
-                    async () => await reminder(settings, parameters),
-                    parameters.every,
-                    isDevelopmentMode
-                );
+                runLoop(reminder, settings, parameters);
                 break;
             case "PriceLimit":
-                runLoop(
-                    async () => await priceLimit(settings, parameters),
-                    parameters.every,
-                    isDevelopmentMode
-                );
+                runLoop(priceLimit, settings, parameters);
                 break;
             case "PriceChange":
-                runLoop(
-                    async () => await priceChange(settings, parameters),
-                    parameters.every,
-                    isDevelopmentMode
-                );
+                runLoop(priceChange, settings, parameters);
                 break;
             default:
                 handleError(
