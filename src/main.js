@@ -6,7 +6,7 @@ import isDevelopmentModeParser from "./utilities/isDevelopmentMode.js";
 import runLoop from "./utilities/runLoop.js";
 import handleError from "./utilities/handleError.js";
 
-let runHistory = new Object();
+let history = new Object();
 
 (async () => {
     const config = await getConfig();
@@ -18,22 +18,26 @@ let runHistory = new Object();
 
         for (const r in rules) {
             const parameters = rules[r]._attributes;
-            switch (r) {
-                case "Reminder":
-                    await reminder(settings, parameters);
-                    break;
-                case "PriceLimit":
-                    await priceLimit(settings, parameters);
-                    break;
-                case "PriceChange":
-                    await priceChange(settings, parameters);
-                    break;
-                default:
-                    handleError(
-                        parameters.id,
-                        `Rule type '${r}' is not recognised.`
-                    );
+            console.log(history, parameters.every);
+            if (history) {
+                switch (r) {
+                    case "Reminder":
+                        await reminder(settings, parameters);
+                        break;
+                    case "PriceLimit":
+                        await priceLimit(settings, parameters);
+                        break;
+                    case "PriceChange":
+                        await priceChange(settings, parameters);
+                        break;
+                    default:
+                        handleError(
+                            parameters.id,
+                            `Rule type '${r}' is not recognised.`
+                        );
+                }
             }
+            history[parameters.id] = Date.now();
         }
     };
 
@@ -43,6 +47,5 @@ let runHistory = new Object();
 // TODO: finish writing PriceChange ruleType
 // TODO: handleError should send email. Find a way to pass the email params to it more easily in order to do this
 // TODO: pass values to sendEmail without renaming them. And also to handlEvent without renaming and other functions.
-// TODO: load xml on each run; this allows it to 'hot load' the config
 // TODO: don't use' cron, instead, put everything on a one day loop. And have an 'every' field to throttle it using local memory - takes a number (this will be number of days). The throttle stores into an object in memory with the rule IDs as keys and dates as values
 // TODO: just put a while sleep loop that runs every day
