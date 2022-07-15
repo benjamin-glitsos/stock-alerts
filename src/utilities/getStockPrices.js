@@ -1,6 +1,7 @@
 import axios from "axios";
 import handleError from "./handleError.js";
 import lastElement from "./lastElement.js";
+import roundTwoDecimals from "../utilities/roundTwoDecimals.js";
 
 export default async ({ apiKey, id, symbol, range }) => {
     try {
@@ -19,8 +20,9 @@ export default async ({ apiKey, id, symbol, range }) => {
 
         const startPrice = prices[0];
         const endPrice = lastElement(prices);
+        const priceRange = [startPrice, endPrice].map(roundTwoDecimals);
 
-        return [startPrice, endPrice];
+        return priceRange;
     } catch (err) {
         handleError(
             id,

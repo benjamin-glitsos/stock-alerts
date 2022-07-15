@@ -1,7 +1,6 @@
 import getStockPrices from "../utilities/getStockPrices.js";
 import handleEvent from "../utilities/handleEvent.js";
 import handleError from "../utilities/handleError.js";
-import roundTwoDecimals from "../utilities/roundTwoDecimals.js";
 
 export default async (settings, parameters) => {
     const { id, symbol, type, price, message } = parameters;
@@ -11,7 +10,7 @@ export default async (settings, parameters) => {
         id,
         symbol,
         range: "1d"
-    }).then(([p]) => roundTwoDecimals(p));
+    })[0];
 
     const eventParameters = {
         ...parameters,
@@ -22,12 +21,12 @@ export default async (settings, parameters) => {
         case "minimum":
             var eventName = "Price below minimum";
             var eventMessage = `Price **${lastPrice} USD** is below minimum of **${price} USD**`;
-            var isTriggered = lastPrice < price;
+            var eventCondition = lastPrice < price;
             break;
         case "maximum":
             var eventName = "Price above maximum";
             var eventMessage = `Price **${lastPrice} USD** is above maximum of **${price} USD**`;
-            var isTriggered = lastPrice > price;
+            var eventCondition = lastPrice > price;
             break;
         default:
             handleError(
@@ -39,7 +38,7 @@ export default async (settings, parameters) => {
     const emailTemplate = "event";
     const subject = `${symbol}: ${eventName}`;
 
-    if (isTriggered) {
+    if (eventCondition) {
         handleEvent(settings, {
             ...eventParameters,
             eventName,

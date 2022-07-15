@@ -22,14 +22,14 @@ export default async (settings, parameters) => {
     //
     // switch (type) {
     //     case "increase":
-    //         var eventName = "Percentage increase";
+    //         // var eventName = "Percentage increase";
     //         // var eventMessage = `Price **$${previousClose}** is below minimum of **$${price}**`;
-    //         // var isTriggered = previousClose < price;
+    //         // var eventCondition = previousClose < price;
     //         break;
     //     case "decrease":
     //         // var eventName = "Price above maximum";
     //         // var eventMessage = `Price **$${previousClose}** is above maximum of **$${price}**`;
-    //         // var isTriggered = previousClose > price;
+    //         // var eventCondition = previousClose > price;
     //         break;
     //     default:
     //         handleError(
@@ -40,7 +40,7 @@ export default async (settings, parameters) => {
     //
     // const subject = `${symbol}: ${eventName}`;
     //
-    // if (isTriggered) {
+    // if (eventCondition) {
     //     handleEvent(settings, {
     //         ...eventParameters,
     //         eventName,

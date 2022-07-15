@@ -1,53 +1,44 @@
-import { promises as fsPromises } from "fs";
-import parseXml from "xml-js";
+import getConfig from "./utilities/getConfig.js";
 import reminder from "./ruleTypes/reminder.js";
 import priceLimit from "./ruleTypes/priceLimit.js";
 import priceChange from "./ruleTypes/priceChange.js";
+import isDevelopmentModeParser from "./utilities/isDevelopmentMode.js";
 import runLoop from "./utilities/runLoop.js";
 import handleError from "./utilities/handleError.js";
 
-const configFilepath = `${process.env.HOME}/.stock-alerts.xml`;
+let runHistory = new Object();
 
-var runHistory = new Object();
+(async () => {
+    const config = await getConfig();
 
-runLoop(async () => {
-    const [configSettings, configRules] = await fsPromises
-        .readFile(configFilepath, "utf8")
-        .catch(err =>
-            console.error(`Could not open config file: ${configFilepath}`)
-        )
-        .then(data =>
-            parseXml.xml2js(data, { compact: true, ignoreComment: true })
-        )
-        .then(config =>
-            [config].flatMap(x => {
-                var settings = config.Rules._attributes;
-                var rules = config.Rules;
-                delete rules["_attributes"];
-                return [settings, rules];
-            })
-        );
+    const main = async () => {
+        const { rules, settings } = await getConfig();
+        const isDevelopmentMode = isDevelopmentModeParser(settings.mode);
+        settings.isDevelopmentMode = isDevelopmentMode;
 
-    for (const rule in configRules) {
-        const parameters = configRules[rule]._attributes;
-        switch (rule) {
-            case "Reminder":
-                reminder(configSettings, parameters);
-                break;
-            case "PriceLimit":
-                priceLimit(configSettings, parameters);
-                break;
-            case "PriceChange":
-                priceChange(configSettings, parameters);
-                break;
-            default:
-                handleError(
-                    parameters.id,
-                    `Rule type '${rule}' is not recognised.`
-                );
+        for (const r in rules) {
+            const parameters = rules[r]._attributes;
+            switch (r) {
+                case "Reminder":
+                    await reminder(settings, parameters);
+                    break;
+                case "PriceLimit":
+                    await priceLimit(settings, parameters);
+                    break;
+                case "PriceChange":
+                    await priceChange(settings, parameters);
+                    break;
+                default:
+                    handleError(
+                        parameters.id,
+                        `Rule type '${r}' is not recognised.`
+                    );
+            }
         }
-    }
-});
+    };
+
+    runLoop(main, config.settings);
+})();
 
 // TODO: finish writing PriceChange ruleType
 // TODO: handleError should send email. Find a way to pass the email params to it more easily in order to do this

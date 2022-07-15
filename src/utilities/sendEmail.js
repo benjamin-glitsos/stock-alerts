@@ -3,14 +3,13 @@ import path from "path";
 import axios from "axios";
 import Mustache from "mustache";
 import handleError from "./handleError.js";
-import parseYesNo from "./parseYesNo.js";
 
 export default async parameters => {
     const {
         template,
         apiKey,
         id,
-        enabled,
+        isDevelopmentMode,
         senderAddress,
         senderName,
         recipientAddress,
@@ -53,7 +52,7 @@ export default async parameters => {
             ]
         };
 
-        if (parseYesNo(enabled)) {
+        if (!isDevelopmentMode) {
             await axios.post(
                 `https://api.sendgrid.com/v3/mail/send`,
                 body,
