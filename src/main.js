@@ -6,7 +6,10 @@ import isDevelopmentModeParser from "./utilities/isDevelopmentMode.js";
 import runLoop from "./utilities/runLoop.js";
 import handleError from "./utilities/handleError.js";
 
-let history = new Object();
+// let history = new Object();
+
+// TODO: dont use history! Instead, create one setInterval per rule, and multiply the interval by the 'every' parameter.
+// Also, use a sleep function before the loop that waits until the desired time of day e.g. 9am to run. (nice-to-have)
 
 (async () => {
     const config = await getConfig();
@@ -18,7 +21,7 @@ let history = new Object();
 
         for (const r in rules) {
             const parameters = rules[r]._attributes;
-            console.log(history, parameters.every);
+            // console.log(history, parameters.every);
             if (history) {
                 switch (r) {
                     case "Reminder":
@@ -37,7 +40,7 @@ let history = new Object();
                         );
                 }
             }
-            history[parameters.id] = Date.now();
+            // history[parameters.id] = Date.now();
         }
     };
 
@@ -47,5 +50,3 @@ let history = new Object();
 // TODO: finish writing PriceChange ruleType
 // TODO: handleError should send email. Find a way to pass the email params to it more easily in order to do this
 // TODO: pass values to sendEmail without renaming them. And also to handlEvent without renaming and other functions.
-// TODO: don't use' cron, instead, put everything on a one day loop. And have an 'every' field to throttle it using local memory - takes a number (this will be number of days). The throttle stores into an object in memory with the rule IDs as keys and dates as values
-// TODO: just put a while sleep loop that runs every day

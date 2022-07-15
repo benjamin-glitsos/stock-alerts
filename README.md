@@ -25,7 +25,7 @@ Create a `.stock-alerts.xml` file in your home directory.
 
     <!-- Reminders: -->
     <Reminder id="rem1"
-        message="Each week, remember to **[check your portfolio](https://au.finance.yahoo.com/portfolio/p_0/view/v1)**." />
+        message="**Health check:** Stock Alerts is running. Also, remember to [check your portfolio](https://au.finance.yahoo.com/portfolio/p_0/view/v1)." />
 
     <!-- Apple Inc (AAPL): -->
     <PriceLimit id="AAPLMinimum500" symbol="AAPL" type="minimum" price="500" />
