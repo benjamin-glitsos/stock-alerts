@@ -60,5 +60,5 @@ export default async (settings, parameters) => {
         eventId
     };
 
-    (await sendEmail(allParameters)) && logEvent(logEventParameters);
+    sendEmail(allParameters) && logEvent(logEventParameters);
 };
