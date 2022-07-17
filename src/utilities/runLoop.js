@@ -1,5 +1,5 @@
 export default (fn, settings, parameters) => {
-    const intervalMultiplier = parameters.every;
+    const intervalMultiplier = parameters.delay;
     const isDevelopmentMode = settings.isDevelopmentMode;
 
     const seconds = intervalMultiplier * 1000;
