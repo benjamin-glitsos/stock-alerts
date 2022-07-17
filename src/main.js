@@ -33,8 +33,3 @@ import handleError from "./utilities/handleError.js";
         }
     }
 })();
-
-// TODO: finish writing PriceChange ruleType
-// TODO in future: use 'nact' actors for config and each rule. This allows periodic loading of config, easy passing of config values to deeply nested functions, resilience by 'let it crash' and reload actors
-// * TODO: handleError should send email. Find a way to pass the email params to it more easily in order to do this
-// * TODO: use a sleep function before the setInterval that waits until the desired time of day e.g. 9am to run. (nice-to-have)
