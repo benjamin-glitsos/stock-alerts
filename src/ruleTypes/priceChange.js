@@ -19,24 +19,24 @@ export default async (settings, parameters) => {
 
     switch (`${unit}:${type}`) {
         case "absolute:increase":
-            var "Absolute change above limit";
+            var eventName = "Absolute change above limit";
             var eventCondition = absoluteChange > value;
-            var eventMessage = `Price has changed by **${absoluteChange}** in **${range}**. (This is above the change limit of **${value}**.)`
+            var eventMessage = `Price has changed by **${absoluteChange}** in **${range}**. (This is above the change limit of **${value}**.)`;
             break;
         case "absolute:decrease":
-            var "Absolute change below limit";
+            var eventName = "Absolute change below limit";
             var eventCondition = absoluteChange < value;
-            var eventMessage = `Price has changed by **${absoluteChange}** in **${range}**. (This is below the change limit of **${value}**.)`
+            var eventMessage = `Price has changed by **${absoluteChange}** in **${range}**. (This is below the change limit of **${value}**.)`;
             break;
         case "percentage:increase":
-            var "Percentage change above limit";
+            var eventName = "Percentage change above limit";
             var eventCondition = percentageChange > value;
-            var eventMessage = `Price has changed by **${absoluteChange}%** in **${range}**. (This is above the change limit of **${value}%**.)`
+            var eventMessage = `Price has changed by **${absoluteChange}%** in **${range}**. (This is above the change limit of **${value}%**.)`;
             break;
         case "percentage:decrease":
-            var "Percentage change below limit";
+            var eventName = "Percentage change below limit";
             var eventCondition = percentageChange < value;
-            var eventMessage = `Price has changed by **${absoluteChange}%** in **${range}**. (This is below the change limit of **${value}%**.)`
+            var eventMessage = `Price has changed by **${absoluteChange}%** in **${range}**. (This is below the change limit of **${value}%**.)`;
             break;
         default:
             handleError(
