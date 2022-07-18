@@ -12,11 +12,6 @@ export default async (settings, parameters) => {
         range: "1d"
     })[0];
 
-    const eventParameters = {
-        ...parameters,
-        lastPrice
-    };
-
     switch (type) {
         case "minimum":
             var eventName = "Price below minimum";
@@ -37,6 +32,11 @@ export default async (settings, parameters) => {
 
     const emailTemplate = "event";
     const subject = `${symbol}: ${eventName}`;
+
+    const eventParameters = {
+        ...parameters,
+        lastPrice
+    };
 
     if (eventCondition) {
         handleEvent(settings, {
