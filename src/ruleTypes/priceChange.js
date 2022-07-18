@@ -19,29 +19,29 @@ export default async (settings, parameters) => {
 
     switch (`${unit}:${type}`) {
         case "absolute:increase":
-            var "Absolute increase";
+            var "Absolute change above limit";
             var eventCondition = absoluteChange > value;
-            var eventMessage = `Price has increased by **${absoluteChange}** in **${range}**. (Your change limit is **${value}** for this alert.)`
+            var eventMessage = `Price has changed by **${absoluteChange}** in **${range}**. (This is above the change limit of **${value}**.)`
             break;
         case "absolute:decrease":
-            var "Absolute decrease";
+            var "Absolute change below limit";
             var eventCondition = absoluteChange < value;
-            var eventMessage = `Price has decreased by **${absoluteChange}** in **${range}**. (Your change limit is **${value}** for this alert.)`
+            var eventMessage = `Price has changed by **${absoluteChange}** in **${range}**. (This is below the change limit of **${value}**.)`
             break;
         case "percentage:increase":
-            var "Percentage increase";
+            var "Percentage change above limit";
             var eventCondition = percentageChange > value;
-            var eventMessage = `Price has increased by **${percentageChange}%** in **${range}**. (Your change limit is **${value}%** for this alert.)`
+            var eventMessage = `Price has changed by **${absoluteChange}%** in **${range}**. (This is above the change limit of **${value}%**.)`
             break;
         case "percentage:decrease":
-            var "Percentage decrease";
+            var "Percentage change below limit";
             var eventCondition = percentageChange < value;
-            var eventMessage = `Price has decreased by **${percentageChange}%** in **${range}**. (Your change limit is **${value}%** for this alert.)`
+            var eventMessage = `Price has changed by **${absoluteChange}%** in **${range}**. (This is below the change limit of **${value}%**.)`
             break;
         default:
             handleError(
                 parameters.id,
-                `Either type attribute of ${type} or unit attribute of ${unit} are not recognised.`
+                `Either type attribute of '${type}' or unit attribute of '${unit}' are not recognised.`
             );
     }
 
