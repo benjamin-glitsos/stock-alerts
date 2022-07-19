@@ -7,18 +7,25 @@ import isDevelopmentModeParser from "./utilities/isDevelopmentMode.js";
 import runLoop from "./utilities/runLoop.js";
 import handleError from "./utilities/handleError.js";
 
-const actors = start();
+const root = start();
 
-const greeter = spawn(
-    actors,
+const configuration = spawn(
+    root,
     (state = {}, msg, ctx) => {
-        console.log(`Hello ${msg.name}!`);
-        return state;
+        switch (msg.action) {
+            case "GET_CONFIG":
+                console.log(msg.value);
+                return state;
+                break;
+            default:
+                console.error("Message type not recognised.");
+                return state;
+        }
     },
-    "greeter"
+    "configuration"
 );
 
-dispatch(greeter, { name: "Erlich Bachman" });
+dispatch(configuration, { action: "GET_CONFIG", value: "Test" });
 
 (async () => {
     const { settings, rules } = await getConfig();
