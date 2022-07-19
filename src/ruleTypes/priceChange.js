@@ -1,6 +1,7 @@
 import getStockPrices from "../utilities/getStockPrices.js";
 import handleEvent from "../utilities/handleEvent.js";
 import handleError from "../utilities/handleError.js";
+import roundTwoDecimals from "../utilities/roundTwoDecimals.js";
 
 export default async (settings, parameters) => {
     const { id, symbol, type, unit, value, range, message } = parameters;
@@ -15,7 +16,7 @@ export default async (settings, parameters) => {
     const firstPrice = prices[0];
     const lastPrice = prices[prices.length - 1];
     const absoluteChange = lastPrice - firstPrice;
-    const percentageChange = absoluteChange / firstPrice;
+    const percentageChange = roundTwoDecimals(absoluteChange / firstPrice);
 
     switch (`${unit}:${type}`) {
         case "absolute:increase":
@@ -52,6 +53,7 @@ export default async (settings, parameters) => {
         absoluteChange,
         percentageChange
     };
+    console.log(eventName, eventCondition, eventMessage);
 
     const subject = `${symbol}: ${eventName}`;
 
