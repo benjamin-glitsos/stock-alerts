@@ -1,4 +1,4 @@
-import { start, dispatch, stop, spawnStateless } from "nact";
+import { start, dispatch, stop, spawn } from "nact";
 import getConfig from "./utilities/getConfig.js";
 import reminder from "./ruleTypes/reminder.js";
 import priceLimit from "./ruleTypes/priceLimit.js";
@@ -9,9 +9,12 @@ import handleError from "./utilities/handleError.js";
 
 const actors = start();
 
-const greeter = spawnStateless(
+const greeter = spawn(
     actors,
-    (msg, ctx) => console.log(`Hello ${msg.name}`),
+    (state = {}, msg, ctx) => {
+        console.log(`Hello ${msg.name}!`);
+        return state;
+    },
     "greeter"
 );
 
